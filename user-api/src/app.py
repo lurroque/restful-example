@@ -25,7 +25,7 @@ def all_users():
 
 @app.route("/users", methods=["GET"])
 def get_users():
-    users = get_all_users()
+    users = get_users_from_db()
     json_users = {"users": users}
     return jsonify(json_users)
 
@@ -37,7 +37,7 @@ def save_to_db(user_name):
     return new_user
 
 
-def get_all_users():
+def get_users_from_db():
     query = User.query.all()
     users = [user.name for user in query]
     if users is not None:

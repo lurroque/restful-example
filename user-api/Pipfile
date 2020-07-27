@@ -8,6 +8,7 @@ pytest = "*"
 pytest-mock = "*"
 python-dotenv = "*"
 pynvim = "*"
+httpie = "*"
 
 [packages]
 flask = "*"

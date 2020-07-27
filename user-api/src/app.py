@@ -1,4 +1,4 @@
-from flask import Flask, abort, request
+from flask import Flask, abort, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -23,7 +23,23 @@ def all_users():
         return data, 201
 
 
-def save_to_db(user):
-    new_user = User(name=user)
+@app.route("/users", methods=["GET"])
+def get_users():
+    users = get_all_users()
+    json_users = {"users": users}
+    return jsonify(json_users)
+
+
+def save_to_db(user_name):
+    new_user = User(name=user_name)
     db.session.add(new_user)
     db.session.commit()
+    return new_user
+
+
+def get_all_users():
+    query = User.query.all()
+    users = [user.name for user in query]
+    if users is not None:
+        return users
+    return ""

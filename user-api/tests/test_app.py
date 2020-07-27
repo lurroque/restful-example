@@ -22,5 +22,6 @@ def test_save_to_db_with_success():
 
 def test_get_users_from_db_with_success(user_created):
     expected_user = user_created.name
-    assert expected_user in get_users_from_db()
+    user_list = get_users_from_db()
+    assert expected_user in user_list
 

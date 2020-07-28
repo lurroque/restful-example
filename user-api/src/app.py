@@ -39,7 +39,7 @@ def save_to_db(user_name):
 
 def get_users_from_db():
     query = User.query.all()
+    if not query:
+        return ""
     users = [user.name for user in query]
-    if users is not None:
-        return users
-    return ""
+    return users
